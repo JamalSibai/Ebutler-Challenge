@@ -15,16 +15,17 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import FreelancerCard from "../../components/FreelancerCard";
 
-export default function Orders({ navigation }) {
+export default function Users({ navigation }) {
   const [data, setData] = useState([]);
   const user = useSelector((state) => state?.user);
   const [search, setSearch] = useState("");
+  const [number, setNumber] = useState(10);
   const [filteredDataSource, setFilteredDataSource] = useState([]);
 
   const userOrders = async () => {
     try {
       const res = await axios.get(
-        `https://6176555a03178d00173dab77.mockapi.io/users?page=${1}&limit=${9}`
+        `https://6176555a03178d00173dab77.mockapi.io/users?page=${1}&limit=${number}`
       );
       if (res.data.hasOwnProperty("status")) {
         console.log(res);
@@ -65,6 +66,13 @@ export default function Orders({ navigation }) {
   const SearchItemView = ({ item }) => {
     return <FreelancerCard props={item} />;
   };
+  const getNewData = () => {
+    console.log("added");
+    setNumber(number + 1);
+    console.log(number);
+    userOrders();
+    console.log("ended");
+  };
 
   useEffect(() => {
     userOrders();
@@ -77,11 +85,13 @@ export default function Orders({ navigation }) {
         round
         searchIcon={{ size: 24 }}
         onChangeText={(text) => searchFilterFunction(text)}
-        onClear={(text) => searchFilterFunction("")}
+        onClear={() => searchFilterFunction("")}
         placeholder="Type User Name Here..."
         value={search}
       />
       <FlatList
+        onEndReached={getNewData}
+        onEndReachedThreshold={1}
         data={filteredDataSource}
         renderItem={SearchItemView}
         keyExtractor={(item) => String(item.id)}

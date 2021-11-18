@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import MapView, { Callout, Marker } from "react-native-maps";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-function Freelancers({ navigation }) {
+function UsersMap({ navigation }) {
   const user = useSelector((state) => state?.user);
   const [data, setData] = useState([]);
 
@@ -65,4 +65,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Freelancers;
+export default UsersMap;

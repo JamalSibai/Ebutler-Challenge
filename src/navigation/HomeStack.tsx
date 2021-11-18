@@ -4,10 +4,9 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import Home from "../screens/UserScreens/Home";
 import Maps from "../screens/UserScreens/Maps";
-import Freelancers from "../screens/UserScreens/Freelancers";
+import UsersMap from "../screens/UserScreens/UsersMap";
 
 import { colors } from "../constants/palette";
-import FreelancerCard from "../components/FreelancerCard";
 
 export function HomeStack() {
   const RootStackNav = createStackNavigator();
@@ -50,24 +49,10 @@ export function HomeStack() {
         }}
       />
       <RootStackNav.Screen
-        name="Freelancers"
-        component={Freelancers}
+        name="UsersMap"
+        component={UsersMap}
         options={{
-          title: "Maps",
-          headerStyle: {
-            backgroundColor: "#000",
-          },
-          headerTintColor: "#fff",
-          headerTitleStyle: {
-            fontWeight: "bold",
-          },
-        }}
-      />
-      <RootStackNav.Screen
-        name="FreelancerCard"
-        component={FreelancerCard}
-        options={{
-          title: "FreelancerCard",
+          title: "UsersMap",
           headerStyle: {
             backgroundColor: "#000",
           },

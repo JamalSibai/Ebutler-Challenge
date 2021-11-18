@@ -14,27 +14,13 @@ import { useSelector } from "react-redux";
 import { colors } from "../../constants/palette";
 
 export default function Home({ navigation }) {
-  const [date, setDate] = useState("");
-  const [selectedRegions, setSelectedRegions] = useState("Beirut");
-  const [selectedCategories, setSelectedCategories] = useState("Electricity");
   const user = useSelector((state) => state?.user);
 
-  const onpress = () => {
+  const Maps = () => {
     navigation.navigate("Maps");
   };
-  const onpress2 = () => {
-    store.dispatch(
-      updateFreelancerSearch({
-        freelancerSearch: {
-          date: date,
-          category: selectedCategories,
-          region: selectedRegions,
-          latitude: user.freelancerSearch.latitude,
-          longitude: user.freelancerSearch.longitude,
-        },
-      })
-    );
-    navigation.navigate("Freelancers");
+  const UsersMap = () => {
+    navigation.navigate("UsersMap");
   };
 
   return (
@@ -52,7 +38,7 @@ export default function Home({ navigation }) {
       <View style={styles.pickerView}>
         <Text style={{ color: "#585858", fontSize: 15 }}>Location: </Text>
         <View style={{ borderWidth: 1 }}>
-          <TouchableOpacity onPress={onpress}>
+          <TouchableOpacity onPress={Maps}>
             <View style={{ flexDirection: "row", marginTop: 10 }}>
               <Text style={styles.TextInput}>Appointment Location</Text>
               <View style={{ paddingTop: 5 }}>
@@ -70,10 +56,10 @@ export default function Home({ navigation }) {
       <View style={{ alignItems: "center", marginTop: 50 }}>
         <TouchableOpacity
           style={[styles.buttonContainer, styles.fabookButton]}
-          onPress={onpress2}
+          onPress={UsersMap}
         >
           <View style={styles.socialButtonContent}>
-            <Text style={styles.loginText}>Find Users location</Text>
+            <Text style={styles.loginText}>Find Users</Text>
           </View>
         </TouchableOpacity>
       </View>

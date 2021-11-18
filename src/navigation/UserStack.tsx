@@ -2,8 +2,8 @@ import * as React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
-import History from "../screens/UserScreens/History";
-import Orders from "../screens/UserScreens/Orders";
+import Post from "../screens/UserScreens/Post";
+import Users from "../screens/UserScreens/Users";
 
 import { NavigationContainer } from "@react-navigation/native";
 
@@ -34,8 +34,8 @@ export function UserBottomTabs({ navigation }) {
         }}
       >
         <BottomTabsNav.Screen
-          name="History"
-          component={History}
+          name="Post"
+          component={Post}
           options={{
             title: "Post",
             tabBarIcon: ({ focused, color, size }) => (
@@ -73,11 +73,11 @@ export function UserBottomTabs({ navigation }) {
           }}
         />
         <BottomTabsNav.Screen
-          name="Order"
-          component={Orders}
+          name="Users"
+          component={Users}
           options={{
             title: "Users",
-            headerShown: false,
+
             tabBarIcon: ({ focused, color, size }) => (
               <MaterialCommunityIcons
                 name={"hammer-screwdriver"}

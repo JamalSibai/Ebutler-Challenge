@@ -10,7 +10,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import { colors } from "../../constants/palette";
 
-export default function EditName({ navigation }) {
+export default function Post({ navigation }) {
   const [newName, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
