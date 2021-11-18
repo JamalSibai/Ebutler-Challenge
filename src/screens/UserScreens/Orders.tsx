@@ -31,8 +31,6 @@ export default function Orders({ navigation }) {
       } else {
         setData(res.data);
         setFilteredDataSource(res.data);
-        console.log("in");
-        console.log(res.data);
       }
     } catch (err) {
       console.log(err);
