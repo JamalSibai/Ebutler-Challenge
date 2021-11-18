@@ -15,7 +15,6 @@ function Freelancers({ navigation }) {
 
   useEffect(() => {
     getusers();
-    console.log(data);
   }, []);
 
   return (

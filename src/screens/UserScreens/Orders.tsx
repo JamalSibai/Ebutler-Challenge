@@ -7,15 +7,13 @@ import {
   FlatList,
 } from "react-native";
 import { SearchBar } from "react-native-elements";
-import React, { useState, useEffect, useRef, Component } from "react";
+import React, { useState, useEffect } from "react";
 import EmptyState from "../../components/EmptyState";
-import { ScrollView } from "react-native-gesture-handler";
+
 import axios from "axios";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+
 import { useSelector } from "react-redux";
 import FreelancerCard from "../../components/FreelancerCard";
-import { colors } from "../../constants/palette";
-import Order from "../../components/Order";
 
 export default function Orders({ navigation }) {
   const [data, setData] = useState([]);
@@ -32,6 +30,7 @@ export default function Orders({ navigation }) {
         console.log(res);
       } else {
         setData(res.data);
+        setFilteredDataSource(res.data);
         console.log("in");
         console.log(res.data);
       }
@@ -94,5 +93,3 @@ export default function Orders({ navigation }) {
     <EmptyState loading={true} icon={"coffee"} />
   );
 }
-
-const styles = StyleSheet.create({});

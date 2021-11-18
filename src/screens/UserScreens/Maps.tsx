@@ -30,12 +30,11 @@ export default function Maps({ navigation }) {
   };
 
   const onpress2 = async () => {
-    console.log(data);
     const lat = pin.latitude;
     const lon = pin.longitude;
     data[user.userProfile.uid][2] = lat;
     data[user.userProfile.uid][3] = lon;
-    console.log(data);
+
     await AsyncStorage.setItem("users", JSON.stringify(data));
 
     navigation.pop();
