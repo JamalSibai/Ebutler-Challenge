@@ -15,6 +15,7 @@ import { updateUserProfile } from "../../redux/slices/userSlice";
 import { store } from "../../redux/store";
 import { colors } from "../../constants/palette";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { deleteUser } from "../../redux/slices/userSlice";
 
 export default function login({ navigation, props }) {
   const [email, setEmail] = useState("");
@@ -34,6 +35,9 @@ export default function login({ navigation, props }) {
     for (let i = 0; i < users.length; i++) {
       if (email == users[i][0]) {
         if (password == users[i][1]) {
+          setTimeout(function () {
+            store.dispatch(deleteUser());
+          }, 3600000);
           store.dispatch(
             updateFreelancerSearch({
               freelancerSearch: {
@@ -79,7 +83,6 @@ export default function login({ navigation, props }) {
           );
           return;
         } else {
-          console.log("alert");
           return alert("wrong password");
         }
       }
@@ -92,12 +95,14 @@ export default function login({ navigation, props }) {
   };
 
   const getusers = async () => {
-    // await AsyncStorage.setItem(
-    //   "users",
-    //   JSON.stringify([["jamal", "password"]])
-    // );
+    if (!(await AsyncStorage.getItem("users"))) {
+      await AsyncStorage.setItem(
+        "users",
+        JSON.stringify([["jamal", "password"]])
+      );
+    }
     const user = await AsyncStorage.getItem("users");
-    console.log(user);
+
     setUsers(JSON.parse(user));
   };
 

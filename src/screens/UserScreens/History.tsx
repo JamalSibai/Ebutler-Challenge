@@ -1,30 +1,33 @@
-import { StyleSheet, Text, View, Button, TouchableOpacity } from "react-native";
-import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-import { FlatList, ScrollView } from "react-native-gesture-handler";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  TextInput,
+} from "react-native";
+import React, { useState } from "react";
 import axios from "axios";
-import EmptyState from "../../components/EmptyState";
-import HistoryCard from "../../components/HistoryCard";
+import { useSelector } from "react-redux";
+import { colors } from "../../constants/palette";
 
-export default function History({ navigation }) {
-  const [data, setData] = useState(null);
-  const user = useSelector((state) => state?.user);
+export default function EditName({ navigation }) {
+  const [newName, setName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
 
-  const userHistory = async () => {
+  const Post = async () => {
     try {
-      const res = await axios.get(
-        `https://bluecaller.tk/api/auth/view-past-orders`,
+      const res = await axios.post(
+        `https://6176555a03178d00173dab77.mockapi.io/users`,
         {
-          headers: {
-            Authorization: "bearer " + user.userProfile.token,
-            Accept: "application / json",
-          },
+          name: newName,
+          lastName: lastName,
+          email: email,
         }
       );
       if (res.data.hasOwnProperty("status")) {
-        setData(null);
+        console.log(res.data);
       } else {
-        setData(res.data);
         console.log(res.data);
       }
     } catch (err) {
@@ -32,22 +35,40 @@ export default function History({ navigation }) {
     }
   };
 
-  useEffect(() => {
-    userHistory();
-  }, []);
-
-  return data ? (
-    <View style={{ backgroundColor: "#F5F5F5", flex: 1 }}>
-      <ScrollView>
-        <View style={{ backgroundColor: "#fff", flex: 1 }}>
-          {data.map((d) => (
-            <HistoryCard props={d} key={d.id} />
-          ))}
+  return (
+    <View style={{ flex: 1, alignItems: "center" }}>
+      <View style={{ alignItems: "center", marginTop: 200, borderWidth: 1 }}>
+        <Text style={styles.nameTxt}> Post </Text>
+        <TextInput
+          style={styles.nameTxt}
+          placeholder="First Name"
+          placeholderTextColor="grey"
+          onChangeText={(Name) => setName(Name)}
+        />
+        <TextInput
+          style={styles.nameTxt}
+          placeholder="Last Name"
+          placeholderTextColor="grey"
+          onChangeText={(lastName) => setLastName(lastName)}
+        />
+        <TextInput
+          style={styles.nameTxt}
+          placeholder="Email"
+          placeholderTextColor="grey"
+          onChangeText={(Email) => setEmail(Email)}
+        />
+        <View style={{ alignItems: "center", marginTop: 50 }}>
+          <TouchableOpacity
+            style={[styles.buttonContainer, styles.fabookButton]}
+            onPress={Post}
+          >
+            <View style={styles.socialButtonContent}>
+              <Text style={styles.loginText}>Post</Text>
+            </View>
+          </TouchableOpacity>
         </View>
-      </ScrollView>
+      </View>
     </View>
-  ) : (
-    <EmptyState loading={true} icon={"coffee"} />
   );
 }
 
@@ -56,6 +77,44 @@ const styles = StyleSheet.create({
     padding: 15,
     flex: 1,
     backgroundColor: "#fff",
+    alignItems: "center",
+  },
+  nameTxt: {
+    marginLeft: 35,
+    fontWeight: "700",
+    color: "#222",
+    fontSize: 20,
+    width: 300,
+    marginTop: 10,
+    alignItems: "center",
+    marginBottom: 10,
+  },
+  picker: {
+    marginVertical: 30,
+    width: 300,
+    padding: 10,
+
+    borderColor: "#666",
+    alignItems: "center",
+  },
+  buttonContainer: {
+    height: 45,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 20,
+    width: 280,
+    marginTop: -50,
+  },
+  loginText: {
+    color: "white",
+  },
+  fabookButton: {
+    backgroundColor: colors.blue,
+  },
+  socialButtonContent: {
+    flexDirection: "row",
+    justifyContent: "center",
     alignItems: "center",
   },
 });

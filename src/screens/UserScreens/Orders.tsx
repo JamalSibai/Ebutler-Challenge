@@ -26,13 +26,13 @@ export default function Orders({ navigation }) {
   const userOrders = async () => {
     try {
       const res = await axios.get(
-        `https://6176555a03178d00173dab77.mockapi.io/users`
+        `https://6176555a03178d00173dab77.mockapi.io/users?page=${1}&limit=${9}`
       );
       if (res.data.hasOwnProperty("status")) {
-        console.log(res.data);
-        console.log(data);
+        console.log(res);
       } else {
         setData(res.data);
+        console.log("in");
         console.log(res.data);
       }
     } catch (err) {
@@ -65,7 +65,7 @@ export default function Orders({ navigation }) {
     }
   };
 
-  const SeachItemView = ({ item }) => {
+  const SearchItemView = ({ item }) => {
     return <FreelancerCard props={item} />;
   };
 
@@ -86,7 +86,7 @@ export default function Orders({ navigation }) {
       />
       <FlatList
         data={filteredDataSource}
-        renderItem={SeachItemView}
+        renderItem={SearchItemView}
         keyExtractor={(item) => String(item.id)}
       />
     </View>

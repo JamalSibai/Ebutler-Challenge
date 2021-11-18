@@ -8,7 +8,7 @@ import History from "../screens/UserScreens/History";
 import { NavigationContainer } from "@react-navigation/native";
 import { OnboardingStack } from "./OnboardingStack";
 import { HomeStack } from "./HomeStack";
-import { ConnectionsStack } from "./ConnectionsStack";
+
 import { ProfileStack } from "./ProfileStack";
 import { OrderStack } from "./OrderStack";
 
@@ -36,33 +36,10 @@ export function UserBottomTabs({ navigation }) {
         }}
       >
         <BottomTabsNav.Screen
-          name="Connection"
-          component={ConnectionsStack}
-          options={{
-            title: "Connection",
-            headerShown: false,
-            tabBarIcon: ({ focused, color, size }) => (
-              <MaterialCommunityIcons
-                name={"pipe-disconnected"}
-                size={28}
-                color={color}
-              />
-            ),
-            headerStyle: {
-              backgroundColor: "#000",
-            },
-            headerTintColor: "#fff",
-            headerTitleStyle: {
-              fontWeight: "bold",
-            },
-          }}
-        />
-
-        <BottomTabsNav.Screen
           name="History"
           component={History}
           options={{
-            title: "History",
+            title: "Post",
             tabBarIcon: ({ focused, color, size }) => (
               <MaterialCommunityIcons
                 name={"history"}
@@ -101,7 +78,7 @@ export function UserBottomTabs({ navigation }) {
           name="Order"
           component={OrderStack}
           options={{
-            title: "Orders",
+            title: "Users",
             headerShown: false,
             tabBarIcon: ({ focused, color, size }) => (
               <MaterialCommunityIcons

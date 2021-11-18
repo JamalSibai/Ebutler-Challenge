@@ -25,7 +25,7 @@ export function HomeStack() {
         name="Home"
         component={Home}
         options={{
-          title: "Choose Freelancer",
+          title: "Maps",
           headerStyle: {
             backgroundColor: "#000",
           },
@@ -53,7 +53,7 @@ export function HomeStack() {
         name="Freelancers"
         component={Freelancers}
         options={{
-          title: "Freelancers",
+          title: "Maps",
           headerStyle: {
             backgroundColor: "#000",
           },
