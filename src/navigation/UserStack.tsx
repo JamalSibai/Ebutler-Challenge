@@ -40,7 +40,7 @@ export function UserBottomTabs({ navigation }) {
             title: "Post",
             tabBarIcon: ({ focused, color, size }) => (
               <MaterialCommunityIcons
-                name={"history"}
+                name={"post-outline"}
                 size={28}
                 color={color}
               />
@@ -80,7 +80,7 @@ export function UserBottomTabs({ navigation }) {
 
             tabBarIcon: ({ focused, color, size }) => (
               <MaterialCommunityIcons
-                name={"hammer-screwdriver"}
+                name={"format-list-checkbox"}
                 size={28}
                 color={color}
               />

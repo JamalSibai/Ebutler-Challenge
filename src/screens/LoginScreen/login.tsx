@@ -8,15 +8,13 @@ import {
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import { updateEditingProfile } from "../../redux/slices/userSlice";
-import { updateDoneFreelancer } from "../../redux/slices/userSlice";
-import { updateFreelancerSearch } from "../../redux/slices/userSlice";
-import { updateChangeDate } from "../../redux/slices/userSlice";
+
 import { updateUserProfile } from "../../redux/slices/userSlice";
 import { store } from "../../redux/store";
 import { colors } from "../../constants/palette";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export default function login({ navigation, props }) {
+export default function login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [users, setUsers] = useState([]);
@@ -34,28 +32,6 @@ export default function login({ navigation, props }) {
     for (let i = 0; i < users.length; i++) {
       if (email == users[i][0]) {
         if (password == users[i][1]) {
-          store.dispatch(
-            updateFreelancerSearch({
-              freelancerSearch: {
-                latitude: "",
-                longitude: "",
-              },
-            })
-          );
-          store.dispatch(
-            updateChangeDate({
-              changeDate: {
-                change: "adddate",
-              },
-            })
-          );
-          store.dispatch(
-            updateDoneFreelancer({
-              DoneFreelancer: {
-                Done: "data.id",
-              },
-            })
-          );
           store.dispatch(
             updateEditingProfile({
               editingProfile: {

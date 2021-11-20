@@ -1,15 +1,8 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  TextInput,
-} from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import { store } from "../../redux/store";
-import { updateFreelancerSearch } from "../../redux/slices/userSlice";
+
 import { useSelector } from "react-redux";
 import { colors } from "../../constants/palette";
 
@@ -40,7 +33,7 @@ export default function Home({ navigation }) {
         <View style={{ borderWidth: 1 }}>
           <TouchableOpacity onPress={Maps}>
             <View style={{ flexDirection: "row", marginTop: 10 }}>
-              <Text style={styles.TextInput}>Appointment Location</Text>
+              <Text style={styles.TextInput}>Add Location</Text>
               <View style={{ paddingTop: 5 }}>
                 <MaterialCommunityIcons
                   name={"menu-right"}
