@@ -20,6 +20,8 @@ const App = () => {
       setTimeout(function () {
         store.dispatch(deleteUser());
       }, 3600000);
+    } else {
+      return;
     }
   };
 
