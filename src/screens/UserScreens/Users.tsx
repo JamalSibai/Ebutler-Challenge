@@ -17,6 +17,7 @@ import FreelancerCard from "../../components/FreelancerCard";
 
 export default function Users({ navigation }) {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
   const user = useSelector((state) => state?.user);
   const [search, setSearch] = useState("");
   const [number, setNumber] = useState(10);
@@ -32,6 +33,7 @@ export default function Users({ navigation }) {
       } else {
         setData(res.data);
         setFilteredDataSource(res.data);
+        setLoading(false);
       }
     } catch (err) {
       console.log(err);
@@ -68,6 +70,7 @@ export default function Users({ navigation }) {
   };
   const getNewData = () => {
     console.log("added");
+    setLoading(true);
     setNumber(number + 1);
     console.log(number);
     userOrders();
@@ -96,8 +99,10 @@ export default function Users({ navigation }) {
         renderItem={SearchItemView}
         keyExtractor={(item) => String(item.id)}
       />
+
+      <EmptyState loading={loading} icon={"loading"} />
     </View>
   ) : (
-    <EmptyState loading={true} icon={"coffee"} />
+    <EmptyState loading={true} icon={"loading"} />
   );
 }
