@@ -70,7 +70,9 @@ export default function login() {
     if (!(await AsyncStorage.getItem("users"))) {
       await AsyncStorage.setItem(
         "users",
-        JSON.stringify([["jamal", "password"]])
+        JSON.stringify([
+          ["Jamal@gmail.com", "password", 33.88048367690405, 35.4964979365468],
+        ])
       );
     }
     const user = await AsyncStorage.getItem("users");

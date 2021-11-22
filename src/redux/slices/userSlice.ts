@@ -30,8 +30,12 @@ const userSlice = createSlice({
     updateEditingProfile(state, action) {
       state.editingProfile = action.payload.editingProfile;
     },
+    deleteUser() {
+      return initialState;
+    },
   },
 });
 
-export const { updateUserProfile, updateEditingProfile } = userSlice.actions;
+export const { updateUserProfile, updateEditingProfile, deleteUser } =
+  userSlice.actions;
 export default userSlice.reducer;
