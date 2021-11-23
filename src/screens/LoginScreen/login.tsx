@@ -59,7 +59,10 @@ export default function login() {
         }
       }
     }
-    const update = [...users, [email, password]];
+    const update = [
+      ...users,
+      [email, password, 33.88048367690405, 35.4964979365468],
+    ];
     await AsyncStorage.setItem("users", JSON.stringify(update));
     getusers();
 

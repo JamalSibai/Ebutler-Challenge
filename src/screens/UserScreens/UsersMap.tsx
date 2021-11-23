@@ -46,8 +46,6 @@ function UsersMap({ navigation }) {
             ))
           : null}
       </MapView>
-
-      {/* <NewRequestBottunComponent  onPress={navigateNewRequest}/> */}
     </View>
   );
 }
